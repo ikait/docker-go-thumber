@@ -33,4 +33,4 @@ RUN \
 
 EXPOSE 8081
 
-CMD ["/usr/local/go/bin/thumberd", "-local", "localhost:8081"]
+CMD ["bash", "-c", "thumberd -local=$(echo `ip r` | cut -d \" \" -f14-14):8081"]
