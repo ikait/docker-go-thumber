@@ -28,7 +28,8 @@ RUN \
   mkdir -p "/usr/local/go/src/pkg/github.com/pixiv" && \
   cd "/usr/local/go/src/pkg/github.com/pixiv" && \
   git clone https://github.com/pixiv/go-thumber.git && \
-  /usr/local/go/bin/go install github.com/pixiv/go-thumber/thumberd 
+  /usr/local/go/bin/go install github.com/pixiv/go-thumber/thumberd && \
+  ln -s /usr/local/go/bin/thumberd /usr/local/bin/thumberd
 
 EXPOSE 8081
 
