@@ -9,4 +9,4 @@ dependencies:
  
 test:
   override:
-    - docker run -it ikai/go-thumber .
+    - docker run -it -p 80:8081 ikai/go-thumber
