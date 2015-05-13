@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/ikait/docker-go-thumber/tree/dev.svg?style=shield)](https://circleci.com/gh/ikait/docker-go-thumber/tree/dev)
+[![Circle CI](https://circleci.com/gh/ikait/docker-go-thumber/tree/dev.svg?style=badge)](https://circleci.com/gh/ikait/docker-go-thumber/tree/dev)
 
 Dockerfile for go-thumber
 
