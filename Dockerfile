@@ -1,36 +1,32 @@
-FROM ubuntu:14.04
+FROM golang:wheezy
 
 RUN \
   apt-get update && apt-get upgrade -y && \
   DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /src
-
 RUN \
-  apt-get install -y \
-    wget \
-    tar \
-    git \
-    gcc \
-    libswscale-dev \
-    libjpeg-turbo8-dev 
+  apt-get install -y -qq --no-install-recommends \
+    libswscale-dev && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/
 
 RUN \
   wget \
-    https://storage.googleapis.com/golang/go1.3.linux-amd64.tar.gz && \
-  tar \
-    -C /usr/local \
-    -xvzf go1.3.linux-amd64.tar.gz && \
-  export PATH=$PATH:/usr/local/go/bin && \
-  export GOPATH=/usr/local/go
+    http://sourceforge.net/projects/libjpeg-turbo/files/1.4.0/libjpeg-turbo-official_1.4.0_amd64.deb/download && \
+  dpkg \
+    -i download && \
+  rm download && \
+  ln -s /opt/libjpeg-turbo/include/* /usr/include/ && \
+  ln -s /opt/libjpeg-turbo/lib64/* /usr/lib/
 
 RUN \
-  mkdir -p "/usr/local/go/src/pkg/github.com/pixiv" && \
-  cd "/usr/local/go/src/pkg/github.com/pixiv" && \
+  mkdir -p "$GOPATH/src/github.com/pixiv" && \
+  cd "$GOPATH/src/github.com/pixiv" && \
   git clone https://github.com/pixiv/go-thumber.git && \
-  /usr/local/go/bin/go install github.com/pixiv/go-thumber/thumberd && \
-  ln -s /usr/local/go/bin/thumberd /usr/local/bin/thumberd
+  go install github.com/pixiv/go-thumber/thumberd
 
 EXPOSE 8081
 
 CMD ["bash", "-c", "thumberd -local=$(echo `ip r` | cut -d \" \" -f14-14):8081"]
+
+
