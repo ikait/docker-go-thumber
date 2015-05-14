@@ -9,7 +9,8 @@ dependencies:
  
 test:
   override:
-    - docker run -p 81:8081 ikai/go-thumber echo "Hello world!"
+    - docker run -d -p 80:8081 ikai/go-thumber
+    - curl localhost/w=400,h300,a=0,q=75/lorempixel.com/1024/768/nature/
 
 deployment:
   hub:
