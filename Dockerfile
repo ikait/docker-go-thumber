@@ -1,4 +1,4 @@
-golang:wheezy
+FROM golang:wheezy
 
 RUN \
   apt-get update && apt-get upgrade -y && \
