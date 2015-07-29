@@ -6,6 +6,6 @@ Dockerfile for [go-thumber](https://github.com/pixiv/go-thumber).
 
 ## Usage
 ```
-$ docker run --rm -p 80:8081 ikai/go-thumber
+$ docker run --rm -p 80:8081 ikait/go-thumber
 ```
 
